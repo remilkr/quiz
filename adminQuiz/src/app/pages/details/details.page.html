@@ -1,0 +1,107 @@
+<ion-header  no-shadow no-border> 
+  <ion-toolbar color="medium">
+    <ion-buttons color="dark" slot="start">
+      <ion-back-button color="dark" ></ion-back-button>
+    </ion-buttons>
+    <ion-title color="dark">{{category.catName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="width:100%;padding:15px;">
+    <mat-form-field class="inputClass" appearance="outline">
+      <mat-label>Enter question</mat-label>
+      <textarea cdkTextareaAutosize
+      type="text"  [(ngModel)]="question.question" matInput placeholder="Enter new category name"></textarea>
+
+    </mat-form-field>
+
+    <mat-form-field  class="inputClass" appearance="outline">
+      <mat-label>Enter option A</mat-label>
+      <textarea cdkTextareaAutosize
+      type="text"  [(ngModel)]="question.optionA" matInput placeholder="Enter option A"></textarea>
+    </mat-form-field>
+
+    <mat-form-field     class="inputClass" appearance="outline">
+      <mat-label>Enter option B</mat-label>
+      <textarea cdkTextareaAutosize
+      type="text"  [(ngModel)]="question.optionB" matInput placeholder="Enter option B"></textarea>
+    </mat-form-field>
+    
+    <mat-form-field   class="inputClass" appearance="outline">
+      <mat-label>Enter option C</mat-label>
+      <textarea cdkTextareaAutosize
+      type="text"  [(ngModel)]="question.optionC" matInput placeholder="Enter option C"></textarea>    </mat-form-field>
+    <ion-list>
+
+            <ion-radio-group
+              allow-empty-selection = "false"
+              name="radio-group"
+              (ionChange)="radioGroupChange($event)"
+            >
+              <ion-list-header>
+                <ion-label>Choose write answer</ion-label>
+              </ion-list-header>
+          
+              <ion-item 
+       
+              (ionSelect)="radioSelect($event)"
+              
+              >
+                <ion-label>{{question.optionA}}</ion-label>
+                <ion-radio 
+                slot="start" 
+                name="{{question.optionA}}" 
+                value="{{question.optionA}}" 
+                checked="false" 
+                
+                ></ion-radio>
+              </ion-item>
+
+              <ion-item 
+            
+              (ionSelect)="radioSelect($event)"
+             
+              >
+                <ion-label>{{question.optionB}}</ion-label>
+                <ion-radio 
+                slot="start" 
+                name="{{question.optionB}}" 
+                value="{{question.optionB}}" 
+                checked="false" 
+                
+                ></ion-radio>
+              </ion-item>
+              <ion-item 
+             
+              (ionSelect)="radioSelect($event)"
+              
+              >
+                <ion-label>{{question.optionC}}</ion-label>
+                <ion-radio 
+                slot="start" 
+                name="{{question.optionC}}" 
+                value="{{question.optionC}}" 
+                checked="false" 
+                
+                ></ion-radio>
+              </ion-item>
+          
+            </ion-radio-group>
+          </ion-list>
+
+
+    <ion-button (click)="CreateRecord()" [disabled]="!question.question||!question.optionA||!question.optionB||!question.optionC||!question.correctAnswer" color="tertiary"  class="register-button" size="large" type="submit"  expand="block">
+      <span style="color:green !important;font-size: 18px;font-weight: 700;">+</span> &nbsp;  Add </ion-button>
+
+      <div *ngFor="let item of questions">
+        {{item.question}}
+        {{item.optionA}}
+        {{item.optionB}}
+        {{item.optionC}}
+        {{item.correctAnswer}}
+      </div>
+  </div>
+
+</ion-content>

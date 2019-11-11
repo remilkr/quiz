@@ -1,0 +1,25 @@
+<ion-app>
+  
+  <ion-menu contentId="content1" side="start">
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>Quiz master</ion-title>
+        </ion-toolbar>
+      </ion-header>
+    
+          <ion-content>
+              <ion-list >
+                  <ion-item>Home</ion-item>
+    
+                <ion-item (click)="logout()">Logout</ion-item>
+              <p style="text-align: center;">Demo Version</p>
+                
+              </ion-list>
+          
+      </ion-content>
+    </ion-menu>
+    
+    
+    <ion-router-outlet id="content1"></ion-router-outlet>
+  </ion-app>
+  

@@ -1,0 +1,85 @@
+<ion-header color="medium" no-shadow no-border>
+  <ion-toolbar no-border color="medium">
+    <ion-title style="color:#000000;font-weight: 500;">Quiz Master</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark" autoHide="true"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span style="color:green !important;font-size: 18px;font-weight: 700;">+</span> &nbsp;Add new category
+        </mat-panel-title>
+       
+      </mat-expansion-panel-header>
+  
+      <div>
+        <mat-form-field class="inputClass" appearance="outline">
+          <mat-label>New category name</mat-label>
+          <input type="text"  [(ngModel)]="catName" matInput placeholder="Enter new category name">
+  
+        </mat-form-field>
+  
+        <ion-button (click)="CreateRecord()" color="tertiary"  [disabled]="!catName "class="register-button" size="large" type="submit"  expand="block">
+          <span style="color:green !important;font-size: 18px;font-weight: 700;">+</span> &nbsp;  Add </ion-button>
+      </div>
+  
+    </mat-expansion-panel>
+    </mat-accordion> 
+  <div style="padding-left:18px;padding-right: 15px;">
+
+    <span class="categoryTitle">Categories</span>
+    <div style="text-align: start;width: 100%;" class="animated bounceInDown">
+
+      <div  *ngFor="let item of questions; let i=index">
+     
+        
+
+      <ion-item >
+        <ion-icon (click)="goToDetails(item)" slot="end" name="arrow-dropright"></ion-icon>
+        <h3 (click)="goToDetails(item)" class="categories">{{item.catName}}</h3>
+
+        <div class="ion-no-margin ion-no-padding" slot="end">
+        <ion-button   style="margin-left:5px;" class="ion-no-margin ion-no-padding"  shape="round" fill="clear" style="color: green;;" size="small" (click)="doSomething(first,second)">
+          <ion-icon  size="small" slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button  style="margin-left:5px;" fill="clear" class="ion-no-margin ion-no-padding"  shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </div>
+      </ion-item>
+
+   
+    
+    <mat-accordion>
+      <mat-expansion-panel #first="matExpansionPanel">
+      
+        <div>
+          <mat-form-field class="inputClass" appearance="outline">
+            <mat-label>Update category name</mat-label>
+            <input type="text"  [(ngModel)]="item.catName" matInput placeholder="Upadte category name">
+    
+          </mat-form-field>
+    
+          <ion-button (click)="updateRecord(item)" color="tertiary"  [disabled]="!item.catName "class="register-button" size="large" type="submit"  expand="block">
+           Update </ion-button>
+        </div>
+    
+      </mat-expansion-panel>
+      </mat-accordion> 
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</ion-content>
