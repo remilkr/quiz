@@ -19,7 +19,7 @@ export class CrudService {
 
   loginUser(value){
     return new Promise<any>((resolve, reject) => {
-      this.firebase.auth.signInWithEmailAndPassword(value.userEmail, value.password)
+this.firebase.auth.signInWithEmailAndPassword(value.userEmail, value.password)
       //this.firebase.auth.signInWithEmailAndPassword('admin@admin.com', 'adminQuiz')
 
       .then(

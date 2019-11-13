@@ -10,15 +10,15 @@ import { MatExpansionPanel } from '@angular/material/expansion';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-
+  today= new Date();
   questions: any = []
   category: any = []
   catName: String;
-  updateQuestion = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "" }
+  updateQuestion = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "",date:this.today }
 
-  question = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "" }
+  question = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "",date:this.today }
 
-  doSomething(first: MatExpansionPanel, second: MatExpansionPanel) {
+  doSomething(first: MatExpansionPanel) {
     if (first.expanded) {  // check if first panel is expanded
       first.close(); // close first panel
     }
@@ -49,11 +49,10 @@ export class DetailsPage implements OnInit {
   }
   CreateRecord() {
    
-    let record = {};
-    record['catName'] = this.catName;
-    // this.helper.presentLoadingWithOptions()
+    
+  this.helper.presentLoadingWithOptions()
     this.crudService.create_NewQuestion(this.question).then(resp => {
-      //    this.helper.hideLoader()
+          this.helper.hideLoader()
       this.catName = "";
       console.log(resp);
     })
@@ -82,7 +81,8 @@ export class DetailsPage implements OnInit {
           correctAnswer: e.payload.doc.data()['correctAnswer'],
           optionA: e.payload.doc.data()['optionA'],
           optionB:e.payload.doc.data()['optionB'],
-          optionC:e.payload.doc.data()['optionC']
+          optionC:e.payload.doc.data()['optionC'],
+          date:e.payload.doc.data()['date']
         };
       })
      
@@ -91,7 +91,9 @@ export class DetailsPage implements OnInit {
     },
       err => {
         this.helper.presentToast(err)
-        this.helper.hideLoader()
+        setTimeout(() => {
+          this.helper.hideLoader()
+        }, 500);
         
       });
   }

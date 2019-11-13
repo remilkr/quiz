@@ -15,14 +15,15 @@ export class HelperService {
   }
 
   
-  async presentToast(msg) {
-    const toast = await this.toastController.create({
+   presentToast(msg) {
+    const toast =  this.toastController.create({
       message: msg,
       duration: 4000,
       position: 'top',
 
+    }).then((res) => {
+      res.present();
     });
-    toast.present();
   }
   sort(datas){
     return datas.sort((a, b) => {

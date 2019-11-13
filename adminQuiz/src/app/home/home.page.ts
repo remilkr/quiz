@@ -18,7 +18,7 @@ export class HomePage {
 
   questions: any = []
   catName: String;
-  doSomething(first: MatExpansionPanel, second: MatExpansionPanel) {
+  doSomething(first: MatExpansionPanel) {
     if (first.expanded) {  // check if first panel is expanded
       first.close(); // close first panel
     }

@@ -18,15 +18,17 @@ export class LoginPage implements OnInit {
   doLogin(){
     this.helper.presentLoadingWithOptions()
 
-      this.crudService.loginUser(this.userDetails)
-      .then(res => {
-        this.helper.hideLoader()
+      this.crudService.loginUser(this.userDetails).then(res => {
+       this.helper.hideLoader()
       //  console.log(res);
       //  this.errorMessage = "";
         this.navCtrl.navigateRoot('/home');
       }, err => {
+      setTimeout(() => {
+        this.helper.hideLoader()
+      }, 500);
+       
        this.helper.presentToast(err)
-       this.helper.hideLoader()
         //this.errorMessage = err.message;
       })
     
