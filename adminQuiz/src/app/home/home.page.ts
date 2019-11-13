@@ -54,7 +54,8 @@ export class HomePage {
       this.questions = this.helper.sort(this.questions)
     },
       err => {
-        console.log("error");
+        this.helper.hideLoader()
+        this.helper.presentToast(err)
       });
   }
 
@@ -69,7 +70,7 @@ export class HomePage {
     })
       .catch(error => {
         this.helper.hideLoader()
-        console.log(error);
+        this.helper.presentToast(error);
       });
   }
 
@@ -79,13 +80,15 @@ export class HomePage {
    
     this.helper.presentAlertConfirm("Sure to delete?", "Once deleted , it cannot be undone").then(data => {
       this.helper.presentLoadingWithOptions()
-      this.crudService.delete_Question(rowID).then(data => {
+      this.crudService.delete_Category(rowID).then(data => {
         this.helper.hideLoader()
       }, err => {
         this.helper.hideLoader()
       })
       // this.readData()
     }, err => {
+      this.helper.presentToast(err)
+      this.helper.hideLoader()
       console.log("no")
     })
 
@@ -96,9 +99,10 @@ export class HomePage {
     let record = {};
     record['catName'] = recordRow.catName;
     this.helper.presentLoadingWithOptions()
-    this.crudService.update_Question(recordRow.id, record).then(res=>{
+    this.crudService.update_Category(recordRow.id, record).then(res=>{
     this.helper.hideLoader()
     },err=>{
+      this.helper.presentToast(err)
       this.helper.hideLoader()
     })
   }

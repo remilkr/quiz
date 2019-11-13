@@ -1,9 +1,9 @@
 <ion-app>
   
-  <ion-menu contentId="content1" side="start">
-      <ion-header>
-        <ion-toolbar color="dark">
-          <ion-title>Quiz master</ion-title>
+  <ion-menu contentId="content1" no-shadow no-border side="start">
+      <ion-header  no-shadow no-border>
+        <ion-toolbar no-shadow no-border color="medium">
+          <ion-title color="dark">Quiz master</ion-title>
         </ion-toolbar>
       </ion-header>
     
@@ -12,7 +12,9 @@
                   <ion-item>Home</ion-item>
     
                 <ion-item (click)="logout()">Logout</ion-item>
-              <p style="text-align: center;">Demo Version</p>
+                <ion-item (click)="exit()">Exit</ion-item>
+
+              <p style="text-align: center;">Version:0.1(Admin)</p>
                 
               </ion-list>
           

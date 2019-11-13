@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { CrudService } from 'src/app/services/crud.service';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-details',
@@ -13,33 +14,41 @@ export class DetailsPage implements OnInit {
   questions: any = []
   category: any = []
   catName: String;
+  updateQuestion = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "" }
+
   question = { catId: "", question: "", optionA: "", optionB: "", optionC: "", correctAnswer: "" }
+
+  doSomething(first: MatExpansionPanel, second: MatExpansionPanel) {
+    if (first.expanded) {  // check if first panel is expanded
+      first.close(); // close first panel
+    }
+    else first.toggle()
+  }
+
   constructor(private helper: HelperService, private crudService: CrudService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.user;
         this.question.catId = this.category.id
-        console.log(this.category)
+      
         this.readData(this.category.id)
       }
     });
-    console.log(this.category)
-    //if(this.question.catId!=undefined)
-    // this.readData()
-
   }
   ngOnInit() {
   }
   radioGroupChange(event) {
-    //console.log("radioGroupChange",event.detail);
-    // this.selectedRadioGroup = event.detail;
+   
   }
-  radioSelect(event) {
-    console.log("radioSelect", event.detail);
+  radioUpdateSelect(event,item) {
+    item.correctAnswer = event.detail.value;
+  }
+  radioSelect(event,item) {
+
     this.question.correctAnswer = event.detail.value;
   }
   CreateRecord() {
-    console.log(this.question)
+   
     let record = {};
     record['catName'] = this.catName;
     // this.helper.presentLoadingWithOptions()
@@ -49,6 +58,8 @@ export class DetailsPage implements OnInit {
       console.log(resp);
     })
       .catch(error => {
+        this.helper.hideLoader()
+        this.helper.presentToast(error)
         //this.helper.hideLoader()
         console.log(error);
       });
@@ -56,13 +67,13 @@ export class DetailsPage implements OnInit {
 
   readData(id: any) {
     this.helper.presentLoadingWithOptions()
-    console.log(id);
+ 
 
-    this.crudService.read_Questions(id).subscribe(data => {
+    this.crudService.read_Question(id).subscribe(data => {
       var datas: any = data
       console.log(datas)
       this.questions = datas.map(e => {
-        // return e;
+      
         return {
 
           id: e.payload.doc.id,
@@ -74,13 +85,57 @@ export class DetailsPage implements OnInit {
           optionC:e.payload.doc.data()['optionC']
         };
       })
-      console.log(this.questions);
+     
       this.helper.hideLoader()
       // this.questions = this.helper.sort(this.questions)
     },
       err => {
-        console.log("error");
+        this.helper.presentToast(err)
+        this.helper.hideLoader()
+        
       });
+  }
+
+
+  deleteRecord(record) {
+   
+    this.helper.presentAlertConfirm("Sure to delete?", "Once deleted , it cannot be undone").then(data => {
+      this.helper.presentLoadingWithOptions()
+      this.crudService.delete_Question(record.id).then(data => {
+        this.helper.hideLoader()
+      }, err => {
+        this.helper.hideLoader()
+      })
+      
+      // this.readData(record.catId)
+    }, err => {
+      this.helper.presentToast(err)
+      this.helper.hideLoader()
+      console.log("no")
+    })
+
+
+  }
+
+  updateRecord(recordRow) {
+    console.log(recordRow)
+    
+    this.updateQuestion.catId=recordRow.catId
+    this.updateQuestion.question=recordRow.question
+    this.updateQuestion.optionA=recordRow.optionA
+    this.updateQuestion.optionB=recordRow.optionB
+    this.updateQuestion.optionC=recordRow.optionC
+    this.updateQuestion.correctAnswer=recordRow.correctAnswer
+
+    
+    this.helper.presentLoadingWithOptions()
+    this.crudService.update_Question(recordRow.id, this.updateQuestion).then(res=>{
+    this.helper.hideLoader()
+
+    },err=>{
+      this.helper.hideLoader()
+      this.helper.presentToast(err)
+    })
   }
 
 }

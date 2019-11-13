@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { resolve } from 'q';
 
 @Injectable({
@@ -8,10 +8,21 @@ import { resolve } from 'q';
 export class HelperService {
   loaderToShow:any;
   isLoading = false;
-  constructor(private  loadingController : LoadingController, private alertController:AlertController) { 
+  constructor(public toastController: ToastController,private  loadingController : LoadingController, private alertController:AlertController) { 
 
 
     
+  }
+
+  
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 4000,
+      position: 'top',
+
+    });
+    toast.present();
   }
   sort(datas){
     return datas.sort((a, b) => {
