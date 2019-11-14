@@ -66,7 +66,6 @@ export class HomePage {
     this.crudService.create_Category(record).then(resp => {
       this.helper.hideLoader()
       this.catName = "";
-      console.log(resp);
     })
       .catch(error => {
         this.helper.hideLoader()
@@ -89,7 +88,7 @@ export class HomePage {
     }, err => {
       this.helper.presentToast(err)
       this.helper.hideLoader()
-      console.log("no")
+      
     })
 
 

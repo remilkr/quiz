@@ -4,36 +4,36 @@ ion-item {
 }
 
 .logo {
- 
-  height:60px;
+  height: 60px;
   width: 60px;
   object-fit: contain;
- 
+
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
- 
+
   margin: 50px auto 0 auto;
-  display: inline-block;;
+  display: inline-block;
   position: absolute;
   z-index: 2;
 }
-.container{
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-sizing: border-box;
-    width: auto;
-    height: 65%;
-  
-    margin: auto;
+.container {
+  text-align: center;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  width: auto;
+  height: 65%;
+
+  margin: auto;
 }
-.logoWonderla{
-  height:100px;
+.logoWonderla {
+  height: 100px;
   width: 100px;
   top: 0px;
   bottom: 0;
@@ -41,28 +41,27 @@ ion-item {
   right: 0;
   object-fit: contain;
   margin: 0px auto 0 auto;
-  display: inline-block;;
+  display: inline-block;
   position: absolute;
   z-index: 2;
- 
 }
 .center-div {
-    position: absolute;
-    z-index: 1;   
+  position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
-    width: auto;
-    box-sizing: border-box;
-    background: #fff;
-    border-radius: 10px;
-    margin: 20px !important;
-    margin-top: 80px !important;
-  }
+  width: auto;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  margin: 20px !important;
+  margin-top: 80px !important;
+}
 .register-button {
   width: 100%;
-  height:50px;
-// background-color: var(--ion-color-medium);
+  height: 50px;
+  // background-color: var(--ion-color-medium);
   font-size: 16px;
   text-transform: none;
   margin-bottom: 15px;
@@ -75,25 +74,23 @@ ion-item {
 
 /* focused color */
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: var(--ion-color-tertiary);
+  color: var(--ion-color-tertiary);
 }
 
 /* floating label color */
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label { 
-    color: var(--ion-color-tertiary);
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: var(--ion-color-tertiary);
 }
 
-
 mat-label {
-    color: var(--ion-color-tertiary);
-   
+  color: var(--ion-color-tertiary);
 }
 
 .inputClass {
   width: 100%;
   font-size: 16px;
   font-weight: bold;
-   color: var(--ion-color-tertiary);
+  color: var(--ion-color-tertiary);
 }
 
 mat-button {

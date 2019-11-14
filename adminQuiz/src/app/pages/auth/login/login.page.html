@@ -1,47 +1,51 @@
-
 <ion-content style="  box-sizing: border-box;background: #ffffff;">
 
   <div class="container">
-    
+    <span style="text-align: center !important; color:#7044ff !important;font-size: 20px;font-weight: 800;">Quiz
+      Master</span> &nbsp;
 
-  <div class="logo animated bounceInUp">
-    <img src="../../../../assets/icon/logo.png">
+
+    <div class="logo animated bounceInUp">
+      <img src="../../../../assets/icon/logo.png">
+    </div>
+    <ion-card class="center-div animated bounceInUp">
+      <form #form="ngForm">
+
+        <div class="center-text">
+        </div>
+        <div style="margin-left:10px;margin-top:35px;margin-right: 10px;">
+
+
+          <mat-form-field class="inputClass" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="userDetails.userEmail" type="email" matInput
+              placeholder="Enter Email">
+
+          </mat-form-field>
+
+          <mat-form-field class="inputClass" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="userDetails.password" type="password" matInput
+              placeholder="Type your password">
+
+          </mat-form-field>
+
+
+
+
+          <div style="margin-right: 2px;">
+            <ion-button (click)="doLogin()" color="tertiary" class="register-button" size="large" type="submit"
+              [disabled]="form.invalid" expand="block">
+              Login</ion-button>
+          </div>
+        </div>
+
+      </form>
+
+      <p style="text-align: center !important;width:100%;margin:10px !important;">
+        Version:0.2</p>
+    </ion-card>
+
+
   </div>
-  <ion-card   class="center-div animated bounceInUp">
-    <form #form="ngForm">
-     
-            <div class="center-text">
-            </div>
-            <div style="margin-left:10px;margin-top:35px;margin-right: 10px;">
-
-
-              <mat-form-field class="inputClass" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input  [ngModelOptions]="{standalone: true}" [(ngModel)]="userDetails.userEmail" type="email" matInput placeholder="Enter Email">
-             
-              </mat-form-field>
-
-              <mat-form-field class="inputClass" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input  [ngModelOptions]="{standalone: true}"   [(ngModel)]="userDetails.password" type="password" matInput placeholder="Type your password">
-              
-              </mat-form-field>
-            
-
-
-
-              <div style="margin-right: 2px;">
-                <ion-button (click)="doLogin()" color="tertiary" class="register-button" size="large" type="submit" [disabled]="form.invalid" expand="block">
-                  Login</ion-button>
-              </div>
-            </div>
-          
-    </form>
-
-    <p style="text-align: center !important;width:100%;margin:10px !important;">
-       Version:0.1</p>
-  </ion-card>
-
-  
-</div>
 </ion-content>

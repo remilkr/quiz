@@ -14,16 +14,20 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { IonicStorageModule } from '@ionic/storage';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    IonicStorageModule.forRoot(),
+
     AngularFirestoreModule,
-    AngularFireDatabaseModule, BrowserAnimationsModule,AngularFireAuthModule
+    AngularFireDatabaseModule, BrowserAnimationsModule, AngularFireAuthModule
 
   ],
   providers: [

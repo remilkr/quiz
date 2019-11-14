@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatButtonModule } from '@angular/material/button';
- import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const routes: Routes = [
   {
@@ -28,8 +28,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     MatInputModule, MatIconModule,
-    MatFormFieldModule, MatButtonModule,MatExpansionModule
+    MatFormFieldModule, MatButtonModule, MatExpansionModule
   ],
   declarations: [DetailsPage]
 })
-export class DetailsPageModule {}
+export class DetailsPageModule { }
